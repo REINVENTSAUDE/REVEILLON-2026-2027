@@ -1,0 +1,1640 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controle Réveillon 2026/2027</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #0b0e1a;
+            --card: rgba(255, 255, 255, 0.05);
+            --card-hover: rgba(255, 255, 255, 0.09);
+            --border: rgba(255, 255, 255, 0.09);
+            --gold: #f5c451;
+            --gold-soft: #ffe9a3;
+            --green: #3ddc84;
+            --orange: #ffb020;
+            --red: #ff5f56;
+            --text: #eef1f8;
+            --muted: #9aa3b8;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background:
+                radial-gradient(900px 500px at 15% -5%, rgba(245, 196, 81, 0.13), transparent 60%),
+                radial-gradient(800px 500px at 90% 10%, rgba(255, 95, 86, 0.10), transparent 60%),
+                radial-gradient(700px 700px at 50% 110%, rgba(61, 220, 132, 0.08), transparent 60%),
+                linear-gradient(160deg, #0b0e1a 0%, #131a2e 50%, #0b0e1a 100%);
+            min-height: 100vh;
+            color: var(--text);
+            padding: 24px 16px;
+        }
+
+        .container {
+            max-width: 1180px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            padding: 24px;
+            backdrop-filter: blur(12px);
+            margin-bottom: 24px;
+        }
+
+        .section-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 18px;
+            flex-wrap: wrap;
+        }
+
+        .section-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--gold);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title::before {
+            content: '';
+            width: 5px;
+            height: 22px;
+            border-radius: 3px;
+            background: linear-gradient(180deg, var(--gold), #d99a1f);
+        }
+
+        .pill {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid var(--border);
+            padding: 5px 14px;
+            border-radius: 999px;
+            font-size: 0.85rem;
+            color: var(--muted);
+        }
+
+        /* Cabeçalho */
+        .header {
+            text-align: center;
+            padding: 36px 24px;
+            background:
+                linear-gradient(180deg, rgba(245, 196, 81, 0.10), rgba(255, 255, 255, 0.03));
+            border: 1px solid rgba(245, 196, 81, 0.25);
+            border-radius: 22px;
+            margin-bottom: 24px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header h1 {
+            font-size: clamp(1.6rem, 4vw, 2.6rem);
+            margin-bottom: 8px;
+            background: linear-gradient(90deg, var(--gold-soft), var(--gold), #e0a83a);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .header .subtitle {
+            font-size: 1.05rem;
+            color: var(--muted);
+        }
+
+        .header .date {
+            margin-top: 12px;
+            color: var(--gold);
+            font-size: 0.95rem;
+        }
+
+        /* Faixa do evento */
+        .event-strip {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 6px 0;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 11px 18px;
+            margin-bottom: 24px;
+            font-size: 0.85rem;
+            color: var(--muted);
+            text-align: center;
+        }
+
+        .event-strip span {
+            white-space: nowrap;
+            padding: 0 14px;
+        }
+
+        .event-strip span:not(:last-child)::after {
+            content: '•';
+            margin-left: 14px;
+            color: rgba(255, 255, 255, 0.25);
+        }
+
+        .event-strip strong {
+            color: var(--gold-soft);
+            font-weight: 600;
+        }
+
+        /* Barra de progresso */
+        .progress-wrap {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 22px;
+            margin-bottom: 24px;
+        }
+
+        .progress-head {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+            color: var(--muted);
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .progress-head strong { color: var(--text); }
+
+        .progress-bar {
+            height: 26px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 999px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 0;
+            background: linear-gradient(90deg, #d99a1f, var(--gold), var(--gold-soft));
+            border-radius: 999px;
+            transition: width 0.6s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #1a1500;
+            min-width: 46px;
+        }
+
+        /* Cronograma de pagamentos */
+        .schedule-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 16px;
+        }
+
+        .schedule-card {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border);
+            border-left: 4px solid var(--orange);
+            border-radius: 14px;
+            padding: 18px;
+        }
+
+        .schedule-card.done { border-left-color: var(--green); }
+        .schedule-card.late { border-left-color: var(--red); }
+
+        .schedule-card .label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--muted);
+        }
+
+        .schedule-card .amount {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--gold-soft);
+            margin: 6px 0;
+        }
+
+        .schedule-card .due {
+            font-size: 0.9rem;
+            color: var(--text);
+            margin-bottom: 12px;
+        }
+
+        .schedule-card .mini-bar {
+            height: 8px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 999px;
+            overflow: hidden;
+            margin-bottom: 8px;
+        }
+
+        .schedule-card .mini-bar div {
+            height: 100%;
+            background: linear-gradient(90deg, var(--green), #8ff0be);
+            border-radius: 999px;
+            transition: width 0.5s ease;
+        }
+
+        .schedule-card .meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.82rem;
+            color: var(--muted);
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 999px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .tag.done { background: rgba(61, 220, 132, 0.15); color: var(--green); }
+        .tag.late { background: rgba(255, 95, 86, 0.15); color: var(--red); }
+        .tag.open { background: rgba(255, 176, 32, 0.15); color: var(--orange); }
+
+        /* Comunicado e regras */
+        .notice {
+            background: rgba(245, 196, 81, 0.07);
+            border: 1px solid rgba(245, 196, 81, 0.3);
+            border-radius: 14px;
+            padding: 20px;
+            margin-bottom: 18px;
+        }
+
+        .notice h4 {
+            color: var(--gold);
+            margin-bottom: 10px;
+            font-size: 1rem;
+        }
+
+        .notice p {
+            color: #d7dced;
+            font-size: 0.93rem;
+            line-height: 1.65;
+            margin-bottom: 8px;
+        }
+
+        .rules {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 12px;
+        }
+
+        .rule {
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 14px;
+            font-size: 0.9rem;
+            color: #cdd4e6;
+            line-height: 1.5;
+        }
+
+        .rule span:first-child { font-size: 1.1rem; }
+
+        /* Controles */
+        .controls {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 10px 20px;
+            border-radius: 999px;
+            border: 1px solid var(--border);
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text);
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .filter-btn:hover { background: var(--card-hover); }
+
+        .filter-btn.active {
+            background: rgba(245, 196, 81, 0.15);
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+
+        .search-box {
+            flex: 1;
+            min-width: 220px;
+            padding: 11px 20px;
+            border-radius: 999px;
+            border: 1px solid var(--border);
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text);
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .search-box:focus { border-color: var(--gold); }
+        .search-box::placeholder { color: var(--muted); }
+
+        /* Participantes */
+        .p-list {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+        }
+
+        .p-card {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 6px 12px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border);
+            border-left: 3px solid var(--orange);
+            border-radius: 10px;
+            transition: background 0.2s ease;
+        }
+
+        .p-card:hover { background: var(--card-hover); }
+
+        .p-card.paid { border-left-color: var(--green); }
+        .p-card.overdue { border-left-color: var(--red); }
+
+        .p-avatar {
+            width: 30px;
+            height: 30px;
+            flex-shrink: 0;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #d99a1f, var(--gold-soft));
+            color: #1a1500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 0.9rem;
+        }
+
+        .p-info {
+            flex: 1;
+            min-width: 110px;
+            overflow: hidden;
+        }
+
+        .p-info h4 {
+            font-size: 0.92rem;
+            font-weight: 600;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .p-info .contact {
+            display: block;
+            color: var(--muted);
+            font-size: 0.73rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .p-money {
+            white-space: nowrap;
+            min-width: 130px;
+            font-size: 0.85rem;
+        }
+
+        .p-money strong { color: var(--green); font-weight: 700; }
+        .p-money span { color: var(--muted); font-size: 0.75rem; }
+
+        .badge {
+            padding: 3px 10px;
+            min-width: 76px;
+            text-align: center;
+            border-radius: 999px;
+            font-size: 0.66rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+        }
+
+        .badge.paid { background: rgba(61, 220, 132, 0.15); color: var(--green); }
+        .badge.pending { background: rgba(255, 176, 32, 0.15); color: var(--orange); }
+        .badge.overdue { background: rgba(255, 95, 86, 0.15); color: var(--red); }
+
+        .p-actions { display: flex; gap: 6px; }
+
+        .icon-btn {
+            width: 26px;
+            height: 26px;
+            border: none;
+            border-radius: 7px;
+            cursor: pointer;
+            font-size: 0.75rem;
+            transition: transform 0.2s ease, background 0.2s ease;
+        }
+
+        .icon-btn:hover { transform: scale(1.1); }
+
+        .icon-btn.edit { background: rgba(245, 196, 81, 0.15); color: var(--gold); }
+        .icon-btn.del { background: rgba(255, 95, 86, 0.15); color: var(--red); }
+        .icon-btn.clip { background: rgba(138, 180, 255, 0.15); color: #8ab4ff; }
+
+        /* Comprovantes */
+        .receipt-note {
+            font-size: 0.82rem;
+            color: var(--muted);
+            margin-bottom: 12px;
+            line-height: 1.5;
+        }
+
+        .receipt-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            padding: 11px 12px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border);
+            border-radius: 11px;
+            margin-bottom: 9px;
+            flex-wrap: wrap;
+        }
+
+        .receipt-info strong {
+            display: block;
+            font-size: 0.9rem;
+            margin-bottom: 2px;
+        }
+
+        .receipt-info small {
+            color: var(--muted);
+            font-size: 0.75rem;
+        }
+
+        .receipt-info small.ok { color: var(--green); }
+
+        .receipt-actions { display: flex; gap: 6px; }
+
+        .r-btn {
+            padding: 6px 12px;
+            border-radius: 999px;
+            border: 1px solid var(--border);
+            background: rgba(255, 255, 255, 0.06);
+            color: var(--text);
+            font-size: 0.78rem;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .r-btn:hover { background: var(--card-hover); }
+        .r-btn.attach { border-color: rgba(61, 220, 132, 0.4); color: var(--green); }
+        .r-btn.view { border-color: rgba(138, 180, 255, 0.4); color: #8ab4ff; }
+        .r-btn.remove { border-color: rgba(255, 95, 86, 0.4); color: var(--red); }
+
+        .chip .clip-ind { font-size: 0.7rem; }
+
+        .p-chips {
+            display: flex;
+            gap: 5px;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+
+        .chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 9px;
+            border-radius: 999px;
+            border: 1px dashed rgba(255, 255, 255, 0.22);
+            background: rgba(255, 255, 255, 0.03);
+            color: var(--muted);
+            font-size: 0.73rem;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.2s ease;
+        }
+
+        .chip:hover { border-color: var(--gold); color: var(--text); }
+
+        .chip.done {
+            border-style: solid;
+            border-color: rgba(61, 220, 132, 0.5);
+            background: rgba(61, 220, 132, 0.14);
+            color: var(--green);
+        }
+
+        .chip.late {
+            border-color: rgba(255, 95, 86, 0.5);
+            color: var(--red);
+        }
+
+        /* Cabeçalho da lista (colunas) */
+        .p-head {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 0 12px 8px;
+            margin-bottom: 8px;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            color: var(--muted);
+        }
+
+        .p-head .spacer { width: 30px; flex-shrink: 0; }
+        .p-head .ph-info { flex: 1; min-width: 110px; }
+        .p-head .ph-money { min-width: 130px; text-align: left; }
+        .p-head .ph-status { min-width: 76px; text-align: center; }
+        .p-head .ph-actions { width: 90px; }
+        .p-head .ph-chips { margin-left: auto; text-align: right; }
+
+        .sort-btn {
+            background: none;
+            border: none;
+            padding: 0;
+            font: inherit;
+            color: inherit;
+            text-transform: inherit;
+            letter-spacing: inherit;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            transition: color 0.2s ease;
+        }
+
+        .sort-btn:hover { color: var(--text); }
+        .sort-btn.active { color: var(--gold); }
+
+        .empty {
+            text-align: center;
+            padding: 30px;
+            color: var(--muted);
+        }
+
+        /* Formulários */
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 18px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            margin-bottom: 7px;
+            color: var(--muted);
+            font-size: 0.88rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            padding: 12px 15px;
+            border-radius: 11px;
+            border: 1px solid var(--border);
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text);
+            font-size: 1rem;
+            outline: none;
+            transition: border 0.2s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus { border-color: var(--gold); }
+
+        .form-group textarea {
+            min-height: 90px;
+            resize: vertical;
+        }
+
+        .btn {
+            padding: 13px 32px;
+            border: none;
+            border-radius: 999px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+        }
+
+        .btn.primary {
+            background: linear-gradient(90deg, #d99a1f, var(--gold));
+            color: #1a1500;
+            margin-top: 18px;
+        }
+
+        .btn.primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 26px rgba(245, 196, 81, 0.3);
+        }
+
+        .btn.ghost {
+            background: rgba(255, 255, 255, 0.07);
+            color: var(--text);
+            border: 1px solid var(--border);
+        }
+
+        .btn.ghost:hover { background: var(--card-hover); }
+
+        /* Exportação */
+        .export-row {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 24px;
+        }
+
+        /* Rodapé */
+        .footer {
+            text-align: center;
+            padding: 10px;
+            color: var(--muted);
+            font-size: 0.88rem;
+            line-height: 1.7;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+        }
+
+        .modal.active { display: flex; }
+
+        .modal-content {
+            background: #141a2e;
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            padding: 26px;
+            width: 92%;
+            max-width: 520px;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 18px;
+        }
+
+        .modal-head h3 { color: var(--gold); }
+
+        .close-btn {
+            background: none;
+            border: none;
+            color: var(--text);
+            font-size: 1.6rem;
+            cursor: pointer;
+            line-height: 1;
+        }
+
+        .pay-checks {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 6px;
+        }
+
+        .pay-check {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 11px 14px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border);
+            border-radius: 11px;
+            font-size: 0.92rem;
+            cursor: pointer;
+        }
+
+        .pay-check input {
+            width: 17px;
+            height: 17px;
+            accent-color: var(--green);
+            cursor: pointer;
+        }
+
+        .pay-check small { color: var(--muted); margin-left: auto; }
+
+        /* Responsivo */
+        @media (max-width: 1000px) {
+            .p-card { flex-wrap: wrap; }
+
+            .p-chips {
+                flex-basis: 100%;
+                justify-content: flex-start;
+            }
+        }
+
+        @media (max-width: 820px) {
+            body {
+                padding: 12px 10px;
+                -webkit-tap-highlight-color: transparent;
+            }
+
+            .header {
+                padding: 20px 12px;
+                border-radius: 16px;
+                margin-bottom: 14px;
+            }
+
+            .header h1 { font-size: 1.3rem; }
+            .header .subtitle { font-size: 0.85rem; }
+            .header .date { font-size: 0.8rem; margin-top: 8px; }
+
+            .event-strip {
+                font-size: 0.76rem;
+                padding: 8px;
+                border-radius: 12px;
+                margin-bottom: 14px;
+            }
+
+            .event-strip span { padding: 0 7px; }
+            .event-strip span:not(:last-child)::after { margin-left: 7px; }
+
+            /* Filtros em grade, estilo app */
+            .controls {
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                gap: 6px;
+                margin-bottom: 14px;
+            }
+
+            .filter-btn {
+                min-width: 0;
+                padding: 9px 2px;
+                font-size: 0.7rem;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            .search-box {
+                grid-column: 1 / -1;
+                min-width: 0;
+                width: 100%;
+                padding: 10px 14px;
+                font-size: 0.9rem;
+            }
+
+            .card {
+                padding: 14px;
+                border-radius: 14px;
+                margin-bottom: 16px;
+            }
+
+            .section-title { font-size: 1.02rem; }
+            .section-head { margin-bottom: 12px; }
+            .pill { font-size: 0.72rem; padding: 4px 10px; }
+
+            .p-head {
+                font-size: 0.6rem;
+                gap: 6px;
+                padding: 0 6px 6px;
+            }
+
+            .p-head .ph-money,
+            .p-head .ph-actions,
+            .p-head .ph-chips { display: none; }
+
+            .p-head .ph-info { min-width: 0; }
+            .p-head .ph-status { min-width: 0; }
+
+            .p-card {
+                padding: 6px 8px;
+                gap: 6px;
+                border-radius: 9px;
+            }
+
+            .p-avatar { width: 24px; height: 24px; font-size: 0.75rem; }
+            .p-info { min-width: 70px; }
+            .p-info h4 { font-size: 0.84rem; }
+            .p-info .contact { font-size: 0.64rem; }
+
+            .p-money { min-width: 0; font-size: 0.75rem; }
+            .p-money span { display: none; }
+
+            .badge {
+                min-width: 0;
+                padding: 2px 7px;
+                font-size: 0.58rem;
+            }
+
+            .p-actions { gap: 4px; }
+            .icon-btn { width: 26px; height: 26px; font-size: 0.7rem; }
+
+            .chip {
+                padding: 3px 7px;
+                font-size: 0.65rem;
+            }
+
+            .p-chips {
+                gap: 4px;
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                scrollbar-width: none;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            .p-chips::-webkit-scrollbar { display: none; }
+
+            .schedule-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+
+            .schedule-card { padding: 12px; }
+            .schedule-card .amount { font-size: 1.3rem; }
+            .schedule-card .due { font-size: 0.82rem; margin-bottom: 9px; }
+            .schedule-card .meta { font-size: 0.75rem; }
+
+            .progress-wrap { padding: 14px; margin-bottom: 16px; }
+            .progress-head { font-size: 0.85rem; }
+            .progress-bar { height: 22px; }
+
+            .notice { padding: 14px; }
+            .notice p { font-size: 0.86rem; }
+            .rules { gap: 8px; }
+            .rule { padding: 11px; font-size: 0.83rem; }
+
+            .btn {
+                padding: 11px 16px;
+                font-size: 0.87rem;
+            }
+
+            .btn.primary {
+                width: 100%;
+                margin-top: 14px;
+            }
+
+            .export-row { gap: 8px; }
+
+            .export-row .btn {
+                flex: 1;
+                min-width: 44%;
+                padding: 10px 6px;
+                font-size: 0.78rem;
+            }
+
+            .form-grid { gap: 12px; }
+
+            .modal-content {
+                padding: 18px;
+                border-radius: 16px;
+            }
+        }
+
+        @media print {
+            body { background: #fff !important; color: #000 !important; padding: 0; }
+            * {
+                background: #fff !important;
+                color: #000 !important;
+                border-color: #ccc !important;
+                box-shadow: none !important;
+            }
+            .no-print { display: none !important; }
+            .card, .p-card, .schedule-card, .event-strip, .progress-wrap { break-inside: avoid; }
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>🎆 Controle de Pagamentos — Réveillon 2026/2027</h1>
+            <p class="subtitle">Casa de praia • 30/12/2026 a 03/01/2027 • Controle e transparência do grupo</p>
+            <p class="date" id="current-date"></p>
+        </header>
+
+        <!-- Faixa do evento -->
+        <section class="event-strip">
+            <span>🔑 Check-in <strong>30/12 às 16h</strong></span>
+            <span>🧳 Check-out <strong>03/01 às 12h</strong></span>
+            <span>🏡 Casa <strong>R$ 7.500,00</strong> (R$ 250/pessoa)</span>
+            <span>🍽️ Alimentação <strong>R$ 200,00</strong> por pessoa</span>
+        </section>
+
+        <!-- Controles -->
+        <section class="controls no-print">
+            <button class="filter-btn active" data-filter="all">Todos</button>
+            <button class="filter-btn" data-filter="paid">Quitados</button>
+            <button class="filter-btn" data-filter="pending">Pendentes</button>
+            <button class="filter-btn" data-filter="overdue">Atrasados</button>
+            <input type="text" class="search-box" placeholder="🔍 Buscar participante..." id="search-input">
+        </section>
+
+        <!-- Lista de participantes -->
+        <section class="card">
+            <div class="section-head">
+                <h2 class="section-title">Lista de Participantes</h2>
+                <span class="pill" id="participant-count">0 participantes</span>
+            </div>
+            <div class="p-head no-print">
+                <span class="spacer"></span>
+                <button class="sort-btn ph-info active" data-sort="name">Nome <span class="arrow">▲</span></button>
+                <span class="ph-money">Pago</span>
+                <button class="sort-btn ph-status" data-sort="status">Status <span class="arrow">⇅</span></button>
+                <span class="ph-actions"></span>
+                <span class="ph-chips">Pagamentos</span>
+            </div>
+            <div class="p-list" id="participants-list"></div>
+        </section>
+
+        <div class="progress-wrap">
+            <div class="progress-head">
+                <span>Progresso geral do grupo</span>
+                <span id="progress-text"><strong>R$ 0,00</strong> de R$ 0,00</span>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress-fill">0%</div>
+            </div>
+        </div>
+
+        <!-- Cronograma de pagamentos -->
+        <section class="card">
+            <div class="section-head">
+                <h2 class="section-title">Cronograma de Pagamentos</h2>
+                <span class="pill" id="next-due">Próximo vencimento: —</span>
+            </div>
+            <div class="schedule-grid" id="schedule-grid"></div>
+        </section>
+
+        <!-- Comunicado e regras -->
+        <section class="card">
+            <div class="section-head">
+                <h2 class="section-title">Comunicado e Regras</h2>
+            </div>
+            <div class="notice">
+                <h4>📢 Comunicado oficial do grupo</h4>
+                <p>A casa ficará disponível do dia <strong>30 de dezembro às 16h</strong> para check-in e ficaremos até o dia <strong>3 de janeiro às 12h</strong>.</p>
+                <p>O valor total da casa é de <strong>R$ 7.500,00</strong>. Por pessoa: 🏠 Casa <strong>R$ 250,00</strong> + 🍽️ Alimentação <strong>R$ 200,00</strong> = <strong>Total R$ 450,00 por pessoa</strong>.</p>
+                <p>Pagamento parcelado:<br>
+                    <strong>1ª parcela</strong> — R$ 90,00 — 06/10<br>
+                    <strong>2ª parcela</strong> — R$ 90,00 — 10/11<br>
+                    <strong>3ª parcela</strong> — R$ 70,00 — 10/12<br>
+                    <strong>Alimentação</strong> — R$ 200,00 — até 20/12
+                </p>
+            </div>
+            <div class="rules">
+                <div class="rule"><span>🚗</span><span>Os valores <strong>não incluem transporte</strong>: cada integrante cuida da ida e volta.</span></div>
+                <div class="rule"><span>⚠️</span><span>Em caso de <strong>desistência, nenhum valor é devolvido</strong>.</span></div>
+                <div class="rule"><span>🧾</span><span>Complementos para manutenção de alimentos e outros serão <strong>cobrança extra</strong>.</span></div>
+                <div class="rule"><span>💰</span><span>Sobrando valor da cota, o valor será <strong>devolvido igualitariamente</strong> a todos.</span></div>
+                <div class="rule"><span>🤝</span><span>Haverá <strong>distribuição de obrigações</strong> antes e durante o encontro.</span></div>
+                <div class="rule"><span>🔒</span><span>Grupo configurado para <strong>somente ADM enviar mensagens</strong>.</span></div>
+            </div>
+        </section>
+
+        <!-- Formulário -->
+        <section class="card no-print">
+            <div class="section-head">
+                <h2 class="section-title">Adicionar Participante</h2>
+            </div>
+            <form id="participant-form">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="name">Nome Completo *</label>
+                        <input type="text" id="name" required placeholder="Digite o nome">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Telefone</label>
+                        <input type="tel" id="phone" placeholder="(00) 00000-0000">
+                    </div>
+                    <div class="form-group">
+                        <label for="notes">Observações</label>
+                        <input type="text" id="notes" placeholder="Ex.: pagou na pix, parcela dupla...">
+                    </div>
+                </div>
+                <button type="submit" class="btn primary">Adicionar Participante</button>
+            </form>
+        </section>
+
+        <!-- Exportação -->
+        <section class="export-row no-print">
+            <button class="btn ghost" id="export-csv">📊 Exportar Excel (CSV)</button>
+            <button class="btn ghost" id="print-page">🖨️ Imprimir</button>
+            <button class="btn ghost" id="reset-data">↺ Restaurar lista original</button>
+        </section>
+
+        <footer class="footer">
+            <p>Controle de Pagamentos — Réveillon 2026/2027 • R$ 450,00 por pessoa (33 participantes)</p>
+            <p>Desenvolvido por Eliezer Martins • Dados salvos automaticamente neste navegador</p>
+            <p id="last-update"></p>
+        </footer>
+    </div>
+
+    <!-- Modal de edição -->
+    <div class="modal no-print" id="edit-modal">
+        <div class="modal-content">
+            <div class="modal-head">
+                <h3>Editar Participante</h3>
+                <button class="close-btn" id="close-modal">&times;</button>
+            </div>
+            <form id="edit-form">
+                <input type="hidden" id="edit-id">
+                <div class="form-group" style="margin-bottom: 14px;">
+                    <label for="edit-name">Nome *</label>
+                    <input type="text" id="edit-name" required>
+                </div>
+                <div class="form-group" style="margin-bottom: 14px;">
+                    <label for="edit-phone">Telefone</label>
+                    <input type="tel" id="edit-phone">
+                </div>
+                <div class="form-group" style="margin-bottom: 14px;">
+                    <label>Pagamentos</label>
+                    <div class="pay-checks" id="edit-payments"></div>
+                </div>
+                <div class="form-group" style="margin-bottom: 18px;">
+                    <label for="edit-notes">Observações</label>
+                    <textarea id="edit-notes"></textarea>
+                </div>
+                <button type="submit" class="btn primary" style="width: 100%;">Salvar Alterações</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal de comprovantes -->
+    <div class="modal no-print" id="receipt-modal">
+        <div class="modal-content">
+            <div class="modal-head">
+                <h3>📎 Comprovantes</h3>
+                <button class="close-btn" id="close-receipts">&times;</button>
+            </div>
+            <p class="receipt-note">Participante: <strong id="receipt-name"></strong></p>
+            <div id="receipt-list"></div>
+            <p class="receipt-note">Envie a foto ou PDF do comprovante de cada pagamento. Com o link da página, cada pessoa anexa o seu.</p>
+        </div>
+    </div>
+
+    <script>
+        const PAYMENTS = [
+            { key: 'p1',   label: '1ª Parcela',   short: '1ª',  value: 90,  due: '2026-10-06' },
+            { key: 'p2',   label: '2ª Parcela',   short: '2ª',  value: 90,  due: '2026-11-10' },
+            { key: 'p3',   label: '3ª Parcela',   short: '3ª',  value: 70,  due: '2026-12-10' },
+            { key: 'alim', label: 'Alimentação',  short: 'Alim', value: 200, due: '2026-12-20' }
+        ];
+
+        const TOTAL_PER_PERSON = PAYMENTS.reduce((s, p) => s + p.value, 0);
+        const STORAGE_KEY = 'reveillon2026_participantes';
+
+        /* ============================================================
+           SUPABASE — comprovantes na nuvem
+           1. Crie um projeto grátis em https://supabase.com
+           2. Cole abaixo a URL e a chave "anon public" do projeto
+              (Settings > API)
+           3. Crie o bucket: SQL Editor >
+              insert into storage.buckets (id, name, public)
+              values ('comprovantes', 'comprovantes', true);
+              create policy "ins" on storage.objects for insert
+                to anon, authenticated with check (bucket_id = 'comprovantes');
+              create policy "sel" on storage.objects for select
+                to anon, authenticated using (bucket_id = 'comprovantes');
+              create policy "del" on storage.objects for delete
+                to anon, authenticated using (bucket_id = 'comprovantes');
+           ============================================================ */
+        const SUPABASE_URL = 'https://eifmyyhnxiszulodxfku.supabase.co';
+        const SUPABASE_ANON_KEY = 'sb_publishable_rG67f7M7kU0q-IDZGpoO0A_WmISlqQl';
+        const BUCKET = 'comprovantes';
+
+        const MSG_CONFIG = 'Comprovantes ainda não configurados.\n\n' +
+            '1. Crie um projeto grátis em supabase.com\n' +
+            '2. Cole a URL e a chave anon no topo do arquivo HTML (buscar SUPABASE_URL)\n' +
+            '3. Crie o bucket "comprovantes" conforme instrução no código';
+
+        const SEED = [
+            ['Eli', 'p1'], ['Hyandra', 'p1'], ['Ranyele', 'p1'], ['Edileuza', 'p1'],
+            ['Eunice', 'p1'], ['Eliezer', 'p1'], ['Danila', 'p1'], ['Joniel', 'p1'],
+            ['Miriam', 'p1'], ['Luanna', ''], ['Davi', 'p1'], ['Emilly', 'p1'],
+            ['Davi Lima', 'p1'], ['Victor Firmino', 'p1'], ['Letícia', 'p1p2p3'],
+            ['Pr Afonso', 'p1'], ['Pra Otília', 'p1'], ['Anderson', 'p1'],
+            ['Lauriane', 'p1'], ['Gabriel', 'p1'], ['Edson', 'p1'], ['Isaac', 'p1'],
+            ['Biel', 'p1'], ['Laryssa', 'p1'], ['Ian', 'p1'], ['Ingrid', 'p1'],
+            ['Graça (mãe da Ingrid)', 'p1'], ['Val Pires', 'p1'], ['Jhonatan', 'p1'],
+            ['Jéssica', 'p1'], ['Hyanna', ''], ['Erbenia', 'p1'], ['Isaac Filho', 'p1']
+        ];
+
+        let participants = [];
+        let currentFilter = 'all';
+        let sortKey = 'name';
+        let sortDir = 1;
+
+        let sbClient = null;
+        let supabaseReady = false;
+        let receipts = {};
+        let receiptModalId = null;
+
+        function initSupabase() {
+            try {
+                if (window.supabase && SUPABASE_URL.startsWith('http')) {
+                    sbClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+                    supabaseReady = true;
+                }
+            } catch (e) { }
+        }
+
+        function receiptKey(key, id) {
+            return `${key}/${id}`;
+        }
+
+        function publicUrl(path) {
+            return sbClient.storage.from(BUCKET).getPublicUrl(path).data.publicUrl;
+        }
+
+        async function refreshReceipts() {
+            if (!supabaseReady) return;
+            const next = {};
+            await Promise.all(PAYMENTS.map(async pay => {
+                try {
+                    const { data } = await sbClient.storage.from(BUCKET).list(pay.key, { limit: 500 });
+                    (data || []).forEach(f => {
+                        const m = /^(\d+)_/.exec(f.name);
+                        if (m) next[receiptKey(pay.key, m[1])] = { path: `${pay.key}/${f.name}` };
+                    });
+                } catch (e) { }
+            }));
+            receipts = next;
+            renderParticipants();
+            if (receiptModalId !== null) renderReceiptRows();
+        }
+
+        function slugify(s) {
+            return s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+                .replace(/[^a-z0-9]+/g, '_').replace(/^_+|_+$/g, '') || 'arquivo';
+        }
+
+        function optimizeFile(file) {
+            return new Promise(resolve => {
+                if (!file.type.startsWith('image/')) return resolve(file);
+                const img = new Image();
+                const url = URL.createObjectURL(file);
+                img.onload = () => {
+                    const max = 1600;
+                    let w = img.width, h = img.height;
+                    if (w > max || h > max) {
+                        const r = Math.min(max / w, max / h);
+                        w = Math.round(w * r);
+                        h = Math.round(h * r);
+                    }
+                    const c = document.createElement('canvas');
+                    c.width = w;
+                    c.height = h;
+                    c.getContext('2d').drawImage(img, 0, 0, w, h);
+                    URL.revokeObjectURL(url);
+                    c.toBlob(b => resolve(b || file), 'image/jpeg', 0.75);
+                };
+                img.onerror = () => { URL.revokeObjectURL(url); resolve(file); };
+                img.src = url;
+            });
+        }
+
+        function pickReceipt(id, key) {
+            if (!supabaseReady) { alert(MSG_CONFIG); return; }
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = 'image/*,application/pdf';
+            input.onchange = () => {
+                const f = input.files[0];
+                if (f) uploadReceipt(id, key, f);
+            };
+            input.click();
+        }
+
+        async function uploadReceipt(id, key, file) {
+            const p = participants.find(x => x.id === id);
+            if (!p || !supabaseReady) return;
+            const row = document.querySelector(`[data-receipt="${key}"]`);
+            if (row) row.textContent = 'Enviando...';
+            try {
+                const isPdf = file.type === 'application/pdf';
+                const blob = isPdf ? file : await optimizeFile(file);
+                const ext = isPdf ? 'pdf' : 'jpg';
+                const fname = `${id}_${slugify(p.name)}.${ext}`;
+                const path = `${key}/${fname}`;
+
+                const { data: old } = await sbClient.storage.from(BUCKET).list(key, { limit: 500 });
+                const stale = (old || [])
+                    .filter(f => f.name.startsWith(id + '_') && f.name !== fname)
+                    .map(f => `${key}/${f.name}`);
+                if (stale.length) await sbClient.storage.from(BUCKET).remove(stale);
+
+                const { error } = await sbClient.storage.from(BUCKET).upload(path, blob, {
+                    contentType: isPdf ? 'application/pdf' : 'image/jpeg',
+                    upsert: true
+                });
+                if (error) throw error;
+                await refreshReceipts();
+            } catch (e) {
+                alert('Erro ao enviar: ' + (e.message || e));
+                renderReceiptRows();
+            }
+        }
+
+        async function removeReceipt(id, key) {
+            if (!supabaseReady) return;
+            if (!confirm('Remover este comprovante?')) return;
+            try {
+                const { data } = await sbClient.storage.from(BUCKET).list(key, { limit: 500 });
+                const files = (data || [])
+                    .filter(f => f.name.startsWith(id + '_'))
+                    .map(f => `${key}/${f.name}`);
+                if (files.length) await sbClient.storage.from(BUCKET).remove(files);
+                await refreshReceipts();
+            } catch (e) {
+                alert('Erro ao remover: ' + (e.message || e));
+            }
+        }
+
+        function openReceipts(id) {
+            const p = participants.find(x => x.id === id);
+            if (!p) return;
+            if (!supabaseReady) { alert(MSG_CONFIG); return; }
+            receiptModalId = id;
+            document.getElementById('receipt-name').textContent = p.name;
+            renderReceiptRows();
+            document.getElementById('receipt-modal').classList.add('active');
+        }
+
+        function closeReceipts() {
+            receiptModalId = null;
+            document.getElementById('receipt-modal').classList.remove('active');
+        }
+
+        function renderReceiptRows() {
+            const p = participants.find(x => x.id === receiptModalId);
+            if (!p) return;
+            document.getElementById('receipt-list').innerHTML = PAYMENTS.map(pay => {
+                const r = receipts[receiptKey(pay.key, p.id)];
+                const url = r ? publicUrl(r.path) : '';
+                return `
+                    <div class="receipt-row">
+                        <div class="receipt-info">
+                            <strong>${pay.label} — ${brl(pay.value)}</strong>
+                            <small class="${p.payments[pay.key] ? 'ok' : ''}">${p.payments[pay.key] ? '✓ marcado como pago' : '○ não marcado como pago'}</small>
+                        </div>
+                        <div class="receipt-actions">
+                            <button class="r-btn attach" data-receipt="${pay.key}" onclick="pickReceipt(${p.id}, '${pay.key}')">${r ? 'Trocar' : 'Anexar'}</button>
+                            ${r ? `<a class="r-btn view" href="${url}" target="_blank" rel="noopener">Ver</a>
+                            <button class="r-btn remove" onclick="removeReceipt(${p.id}, '${pay.key}')">Remover</button>` : ''}
+                        </div>
+                    </div>`;
+            }).join('');
+        }
+
+        const brl = n => new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(n);
+
+        function todayStr() {
+            const d = new Date();
+            return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+        }
+
+        function fmtDate(iso) {
+            const [y, m, d] = iso.split('-');
+            return `${d}/${m}/${y}`;
+        }
+
+        function seedParticipants() {
+            return SEED.map((s, i) => ({
+                id: i + 1,
+                name: s[0],
+                phone: '',
+                notes: '',
+                payments: { p1: s[1].includes('p1'), p2: s[1].includes('p2'), p3: s[1].includes('p3'), alim: s[1].includes('alim') }
+            }));
+        }
+
+        function load() {
+            try {
+                const raw = localStorage.getItem(STORAGE_KEY);
+                if (raw) {
+                    const data = JSON.parse(raw);
+                    if (Array.isArray(data) && data.length) return data;
+                }
+            } catch (e) { }
+            return seedParticipants();
+        }
+
+        function save() {
+            try { localStorage.setItem(STORAGE_KEY, JSON.stringify(participants)); } catch (e) { }
+            document.getElementById('last-update').textContent = 'Atualizado: ' + new Date().toLocaleString('pt-BR');
+        }
+
+        function paidOf(p) {
+            return PAYMENTS.reduce((s, x) => s + (p.payments[x.key] ? x.value : 0), 0);
+        }
+
+        function statusOf(p) {
+            const unpaid = PAYMENTS.filter(x => !p.payments[x.key]);
+            if (!unpaid.length) return 'paid';
+            if (unpaid.some(x => x.due < todayStr())) return 'overdue';
+            return 'pending';
+        }
+
+        function statusText(s) {
+            return { paid: 'Quitado', pending: 'Pendente', overdue: 'Atrasado' }[s] || s;
+        }
+
+        function compareParticipants(a, b) {
+            if (sortKey === 'status') {
+                const order = { overdue: 0, pending: 1, paid: 2 };
+                const d = order[statusOf(a)] - order[statusOf(b)];
+                if (d !== 0) return d * sortDir;
+                return a.name.localeCompare(b.name, 'pt-BR', { sensitivity: 'base' });
+            }
+            return sortDir * a.name.localeCompare(b.name, 'pt-BR', { sensitivity: 'base' });
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            participants = load();
+            const opts = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            document.getElementById('current-date').textContent = new Date().toLocaleDateString('pt-BR', opts);
+            initSupabase();
+            setupListeners();
+            renderAll();
+            refreshReceipts();
+        });
+
+        function renderAll() {
+            renderSummary();
+            renderSchedule();
+            renderParticipants();
+            save();
+        }
+
+        function renderSummary() {
+            const expected = participants.length * TOTAL_PER_PERSON;
+            const collected = participants.reduce((s, p) => s + paidOf(p), 0);
+            const pct = expected > 0 ? Math.round((collected / expected) * 100) : 0;
+
+            const fill = document.getElementById('progress-fill');
+            fill.style.width = Math.min(pct, 100) + '%';
+            fill.textContent = pct + '%';
+            document.getElementById('progress-text').innerHTML = `<strong>${brl(collected)}</strong> de ${brl(expected)} • ${participants.length} participantes`;
+        }
+
+        function renderSchedule() {
+            const t = todayStr();
+            let nextDue = null;
+
+            document.getElementById('schedule-grid').innerHTML = PAYMENTS.map(pay => {
+                const paidCount = participants.filter(p => p.payments[pay.key]).length;
+                const total = participants.length;
+                const pct = total > 0 ? Math.round((paidCount / total) * 100) : 0;
+                let cls = 'open', tag = 'Em aberto', tagCls = 'open';
+                if (total > 0 && paidCount === total) { cls = 'done'; tag = 'Concluído'; tagCls = 'done'; }
+                else if (pay.due < t) { cls = 'late'; tag = 'Vencido'; tagCls = 'late'; }
+                if (pay.due >= t && (!nextDue || pay.due < nextDue.due)) nextDue = pay;
+
+                return `
+                    <div class="schedule-card ${cls}">
+                        <div class="label">${pay.label}</div>
+                        <div class="amount">${brl(pay.value)}</div>
+                        <div class="due">📅 Vence em ${fmtDate(pay.due)}</div>
+                        <div class="mini-bar"><div style="width: ${pct}%"></div></div>
+                        <div class="meta">
+                            <span>${paidCount}/${total} pagaram</span>
+                            <span class="tag ${tagCls}">${tag}</span>
+                        </div>
+                    </div>`;
+            }).join('');
+
+            const el = document.getElementById('next-due');
+            el.textContent = nextDue
+                ? `Próximo: ${nextDue.label} — ${fmtDate(nextDue.due)}`
+                : 'Todas as datas vencidas';
+        }
+
+        function renderParticipants() {
+            const term = document.getElementById('search-input').value.toLowerCase();
+            const list = participants
+                .filter(p => {
+                    const st = statusOf(p);
+                    const okFilter = currentFilter === 'all' || st === currentFilter;
+                    const okSearch = p.name.toLowerCase().includes(term) || (p.phone || '').includes(term);
+                    return okFilter && okSearch;
+                })
+                .sort(compareParticipants);
+
+            document.querySelectorAll('.sort-btn').forEach(btn => {
+                const active = btn.dataset.sort === sortKey;
+                btn.classList.toggle('active', active);
+                btn.querySelector('.arrow').textContent = active ? (sortDir === 1 ? '▲' : '▼') : '⇅';
+            });
+
+            const container = document.getElementById('participants-list');
+
+            if (!list.length) {
+                container.innerHTML = '<div class="empty">Nenhum participante encontrado.</div>';
+            } else {
+                container.innerHTML = list.map(p => {
+                    const st = statusOf(p);
+                    const paid = paidOf(p);
+                    return `
+                        <div class="p-card ${st}">
+                            <div class="p-avatar">${p.name.charAt(0).toUpperCase()}</div>
+                            <div class="p-info">
+                                <h4>${escapeHtml(p.name)}</h4>
+                                <span class="contact">${escapeHtml(p.phone || '—')}${p.notes ? ' • ' + escapeHtml(p.notes) : ''}</span>
+                            </div>
+                            <div class="p-money">
+                                <strong>${brl(paid)}</strong><span> / ${brl(TOTAL_PER_PERSON)}</span>
+                            </div>
+                            <span class="badge ${st}">${statusText(st)}</span>
+                            <div class="p-actions no-print">
+                                <button class="icon-btn clip" onclick="openReceipts(${p.id})" title="Comprovantes">📎</button>
+                                <button class="icon-btn edit" onclick="openEdit(${p.id})" title="Editar">✏️</button>
+                                <button class="icon-btn del" onclick="removeParticipant(${p.id})" title="Excluir">🗑️</button>
+                            </div>
+                            <div class="p-chips no-print">
+                                ${PAYMENTS.map(pay => {
+                                    const done = p.payments[pay.key];
+                                    const isLate = !done && pay.due < todayStr();
+                                    const hasR = !!receipts[receiptKey(pay.key, p.id)];
+                                    return `<button class="chip ${done ? 'done' : ''} ${isLate ? 'late' : ''}"
+                                        onclick="togglePayment(${p.id}, '${pay.key}')"
+                                        title="${pay.label} — ${brl(pay.value)} — vence ${fmtDate(pay.due)}${hasR ? ' — comprovante anexado ✓' : ''}">
+                                        ${done ? '✓' : '○'} ${pay.short} ${brl(pay.value).replace(',00', '')}${hasR ? ' <span class="clip-ind">📎</span>' : ''}
+                                    </button>`;
+                                }).join('')}
+                            </div>
+                        </div>`;
+                }).join('');
+            }
+
+            document.getElementById('participant-count').textContent =
+                `${list.length} de ${participants.length} participantes`;
+        }
+
+        function escapeHtml(s) {
+            return String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+        }
+
+        function togglePayment(id, key) {
+            const p = participants.find(x => x.id === id);
+            if (!p) return;
+            p.payments[key] = !p.payments[key];
+            renderAll();
+        }
+
+        function removeParticipant(id) {
+            const p = participants.find(x => x.id === id);
+            if (!p) return;
+            if (confirm(`Excluir "${p.name}" da lista?`)) {
+                participants = participants.filter(x => x.id !== id);
+                renderAll();
+            }
+        }
+
+        function openEdit(id) {
+            const p = participants.find(x => x.id === id);
+            if (!p) return;
+            document.getElementById('edit-id').value = p.id;
+            document.getElementById('edit-name').value = p.name;
+            document.getElementById('edit-phone').value = p.phone || '';
+            document.getElementById('edit-notes').value = p.notes || '';
+            document.getElementById('edit-payments').innerHTML = PAYMENTS.map(pay => `
+                <label class="pay-check">
+                    <input type="checkbox" value="${pay.key}" ${p.payments[pay.key] ? 'checked' : ''}>
+                    <span>${pay.label} — ${brl(pay.value)}</span>
+                    <small>${fmtDate(pay.due)}</small>
+                </label>`).join('');
+            document.getElementById('edit-modal').classList.add('active');
+        }
+
+        function closeEdit() {
+            document.getElementById('edit-modal').classList.remove('active');
+        }
+
+        function setupListeners() {
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.addEventListener('click', function () {
+                    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    currentFilter = this.dataset.filter;
+                    renderParticipants();
+                });
+            });
+
+            document.getElementById('search-input').addEventListener('input', renderParticipants);
+
+            document.querySelectorAll('.sort-btn').forEach(btn => {
+                btn.addEventListener('click', function () {
+                    const key = this.dataset.sort;
+                    if (sortKey === key) {
+                        sortDir *= -1;
+                    } else {
+                        sortKey = key;
+                        sortDir = 1;
+                    }
+                    renderParticipants();
+                });
+            });
+
+            document.getElementById('participant-form').addEventListener('submit', function (e) {
+                e.preventDefault();
+                const name = document.getElementById('name').value.trim();
+                if (!name) return;
+                participants.push({
+                    id: participants.length ? Math.max(...participants.map(p => p.id)) + 1 : 1,
+                    name: name,
+                    phone: document.getElementById('phone').value.trim(),
+                    notes: document.getElementById('notes').value.trim(),
+                    payments: { p1: false, p2: false, p3: false, alim: false }
+                });
+                this.reset();
+                renderAll();
+            });
+
+            document.getElementById('edit-form').addEventListener('submit', function (e) {
+                e.preventDefault();
+                const id = parseInt(document.getElementById('edit-id').value);
+                const p = participants.find(x => x.id === id);
+                if (!p) return;
+                p.name = document.getElementById('edit-name').value.trim() || p.name;
+                p.phone = document.getElementById('edit-phone').value.trim();
+                p.notes = document.getElementById('edit-notes').value.trim();
+                document.querySelectorAll('#edit-payments input').forEach(cb => {
+                    p.payments[cb.value] = cb.checked;
+                });
+                closeEdit();
+                renderAll();
+            });
+
+            document.getElementById('close-modal').addEventListener('click', closeEdit);
+            document.getElementById('edit-modal').addEventListener('click', function (e) {
+                if (e.target === this) closeEdit();
+            });
+
+            document.getElementById('close-receipts').addEventListener('click', closeReceipts);
+            document.getElementById('receipt-modal').addEventListener('click', function (e) {
+                if (e.target === this) closeReceipts();
+            });
+
+            document.getElementById('export-csv').addEventListener('click', exportCSV);
+            document.getElementById('print-page').addEventListener('click', () => window.print());
+            document.getElementById('reset-data').addEventListener('click', function () {
+                if (confirm('Restaurar a lista original (33 participantes)? As alterações feitas serão perdidas.')) {
+                    participants = seedParticipants();
+                    renderAll();
+                }
+            });
+        }
+
+        function exportCSV() {
+            const head = ['Nome', 'Telefone', ...PAYMENTS.map(p => `${p.label} (${brl(p.value)})`), 'Total Pago', 'Status', 'Observações'];
+            const rows = [...participants]
+                .sort((a, b) => a.name.localeCompare(b.name, 'pt-BR', { sensitivity: 'base' }))
+                .map(p => [
+                p.name,
+                p.phone || '',
+                ...PAYMENTS.map(x => p.payments[x.key] ? 'PAGO' : 'NÃO PAGO'),
+                brl(paidOf(p)),
+                statusText(statusOf(p)),
+                p.notes || ''
+            ]);
+            const csv = '\uFEFF' + [head, ...rows]
+                .map(r => r.map(c => `"${String(c).replace(/"/g, '""')}"`).join(';'))
+                .join('\r\n');
+            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+            const a = document.createElement('a');
+            a.href = URL.createObjectURL(blob);
+            a.download = 'controle_reveillon_2026.csv';
+            a.click();
+            URL.revokeObjectURL(a.href);
+        }
+    </script>
+</body>
+</html>
